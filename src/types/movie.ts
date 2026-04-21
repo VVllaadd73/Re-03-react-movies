@@ -9,3 +9,11 @@ export interface Movie {
     release_date: string;
     vote_average: number;
 }
+
+export interface MovieResponse {
+    results: Movie[];
+}
+
+export interface SearchFormProps {
+   onSearch: (textSearch: string) => void;
+}

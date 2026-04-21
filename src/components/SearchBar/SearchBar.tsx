@@ -1,8 +1,23 @@
 // src/components/SearchBar/SearchBar.tsx
 
 import styles from './SearchBar.module.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function SearchBar() {
+import type { SearchFormProps } from '../../types/movie';
+
+export default function SearchBar({ onSearch }: SearchFormProps) {
+  const handleSearch = (formData: FormData) => {
+    const query = formData.get('query') as string;
+    console.log('Search query:', query);
+
+    if (query === "") {
+      toast.error("Please enter a search topic!");
+      return;
+    }
+
+    onSearch(query);
+  }
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -14,7 +29,7 @@ export default function SearchBar() {
         >
           Powered by TMDB
         </a>
-        <form className={styles.form}>
+        <form action={handleSearch} className={styles.form}>
           <input
             className={styles.input}
             type="text"
