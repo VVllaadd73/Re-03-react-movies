@@ -6,7 +6,7 @@ import type { MovieResponse } from '../types/movie';
 const token = import.meta.env.VITE_TMDB_TOKEN;
 const baseURL = 'https://api.themoviedb.org/3';
 
-export async function fetchSearchMovies(textSearch: string) {
+async function fetchSearchMovies(textSearch: string) {
   const response = await axios.get<MovieResponse>(`${baseURL}/search/movie`, {
     params: {
       query: textSearch
@@ -17,3 +17,5 @@ export async function fetchSearchMovies(textSearch: string) {
   });
   return response.data.results;
 }
+
+export default fetchSearchMovies;

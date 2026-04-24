@@ -9,7 +9,6 @@ import type { SearchFormProps } from '../../types/movie';
 export default function SearchBar({ onSearch }: SearchFormProps) {
   const handleSearch = (formData: FormData) => {
     const query = formData.get('query') as string;
-    console.log('Search query:', query);
 
     if (query === "") {
       toast.error("Please enter a search topic!");
